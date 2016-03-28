@@ -47,7 +47,7 @@ packageVersion("albersusa")
 
 us <- usa_composite()
 
-(dplyr::glimpse(us@data))
+dplyr::glimpse(us@data)
 
 plot(us)
 
