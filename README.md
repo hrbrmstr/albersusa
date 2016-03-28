@@ -34,6 +34,8 @@ library(maptools)
 library(ggplot2)
 library(ggalt)
 library(ggthemes)
+library(viridis)
+library(scales)
 
 # current verison
 packageVersion("albersusa")
@@ -131,6 +133,18 @@ gg + coord_proj(us_lcc_proj)
 
 <img src="README_files/figure-html/unnamed-chunk-3-9.png" title="" alt="" width="672" />
 
+```r
+gg + 
+  geom_map(data=us@data, map=us_map,
+           aes(fill=pop_2014, map_id=name),
+           color="white", size=0.1) +
+  coord_proj(us_laea_proj) +
+  scale_fill_viridis(name="2014 Populaton Estimates", labels=comma) +
+  theme(legend.position="right")
+```
+
+<img src="README_files/figure-html/unnamed-chunk-3-10.png" title="" alt="" width="672" />
+
 ### Test Results
 
 
@@ -142,7 +156,7 @@ date()
 ```
 
 ```
-## [1] "Mon Mar 28 17:47:55 2016"
+## [1] "Mon Mar 28 17:53:57 2016"
 ```
 
 ```r

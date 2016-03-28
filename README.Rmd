@@ -41,6 +41,8 @@ library(maptools)
 library(ggplot2)
 library(ggalt)
 library(ggthemes)
+library(viridis)
+library(scales)
 
 # current verison
 packageVersion("albersusa")
@@ -76,6 +78,15 @@ gg + coord_proj(us_aeqd_proj)
 gg + coord_proj(us_eqdc_proj)
 
 gg + coord_proj(us_lcc_proj)
+
+gg + 
+  geom_map(data=us@data, map=us_map,
+           aes(fill=pop_2014, map_id=name),
+           color="white", size=0.1) +
+  coord_proj(us_laea_proj) +
+  scale_fill_viridis(name="2014 Populaton Estimates", labels=comma) +
+  theme(legend.position="right")
+
 ```
 
 ### Test Results
