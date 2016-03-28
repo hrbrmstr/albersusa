@@ -46,13 +46,16 @@ library(ggthemes)
 packageVersion("albersusa")
 
 us <- usa_composite()
+
+(dplyr::glimpse(us@data))
+
 plot(us)
 
 us <- usa_composite("laea")
 plot(us)
 
 us <- usa_composite()
-us_map <- fortify(us, region="NAME")
+us_map <- fortify(us, region="name")
 
 gg <- ggplot()
 gg <- gg + geom_map(data=us_map, map=us_map,
