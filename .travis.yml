@@ -2,6 +2,11 @@ language: r
 warnings_are_errors: true
 sudo: required
 
+apt_packages:
+ - binutils
+ - libproj-dev
+ - gdal-bin
+
 env:
  global:
    - CRAN: http://cran.rstudio.com
@@ -10,16 +15,3 @@ notifications:
   email:
     on_success: change
     on_failure: change
-
-script: ./travis-tool.sh run_tests
-
-on_failure:
-  - ./travis-tool.sh dump_logs
-
-branches:
-  except:
-  - /-expt$/
-  notifications:
-    email:
-      on_success: change
-      on_failure: change
