@@ -17,7 +17,7 @@ parameter to \code{ggalt::coord_proj()}. i.e. \code{coord_proj(us_lcc_proj)}.
 }
 \examples{
 us <- usa_composite()
-us <- sp::spTransform(us, CRS(us_lcc_proj))
+us <- sp::spTransform(us, sp::CRS(us_lcc_proj))
 us <- usa_composite(proj="lcc")
 counties <- counties_composite("lcc")
 }

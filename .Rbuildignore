@@ -5,4 +5,4 @@
 ^README\.*html$
 ^NOTES\.*md$
 ^NOTES\.*html$
-^README_files/$
+^README_files

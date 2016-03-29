@@ -17,7 +17,7 @@ parameter to \code{ggalt::coord_proj()}. i.e. \code{coord_proj(us_laea_proj)}.
 }
 \examples{
 us <- usa_composite()
-us <- sp::spTransform(us, CRS(us_laea_proj))
+us <- sp::spTransform(us, sp::CRS(us_laea_proj))
 us <- usa_composite(proj="laea")
 counties <- counties_composite("laea")
 }

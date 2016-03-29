@@ -9,7 +9,7 @@
 #' @export
 #' @examples
 #' us <- usa_composite()
-#' us <- sp::spTransform(us, CRS(us_laea_proj))
+#' us <- sp::spTransform(us, sp::CRS(us_laea_proj))
 #' us <- usa_composite(proj="laea")
 #' counties <- counties_composite("laea")
 us_laea_proj <- "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs"
@@ -25,7 +25,7 @@ us_laea_proj <- "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=63
 #' @export
 #' @examples
 #' us <- usa_composite() # it's the default
-#' us <- sp::spTransform(us, CRS(us_longlat_proj))
+#' us <- sp::spTransform(us, sp::CRS(us_longlat_proj))
 #' counties <- counties_composite()
 us_longlat_proj <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
 
@@ -41,7 +41,7 @@ us_longlat_proj <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,
 #' @export
 #' @examples
 #' us <- usa_composite()
-#' us <- sp::spTransform(us, CRS(us_lcc_proj))
+#' us <- sp::spTransform(us, sp::CRS(us_lcc_proj))
 #' us <- usa_composite(proj="lcc")
 #' counties <- counties_composite("lcc")
 us_lcc_proj <- "+proj=lcc +lat_1=27.11637320883929 +lat_2=53.050729042644335 +lon_0=-95.44921875"
@@ -60,7 +60,7 @@ us_lcc_proj <- "+proj=lcc +lat_1=27.11637320883929 +lat_2=53.050729042644335 +lo
 #' @export
 #' @examples
 #' us <- usa_composite()
-#' us <- sp::spTransform(us, CRS(us_eqdc_proj))
+#' us <- sp::spTransform(us, sp::CRS(us_eqdc_proj))
 #' us <- usa_composite(proj="eqdc")
 #' counties <- counties_composite("eqdc")
 #'
@@ -80,7 +80,7 @@ us_eqdc_proj <- "+proj=eqdc +lat_1=27.11637320883929 +lat_2=53.050729042644335 +
 #' @export
 #' @examples
 #' us <- usa_composite()
-#' us <- sp::spTransform(us, CRS(us_aeqd_proj))
+#' us <- sp::spTransform(us, sp::CRS(us_aeqd_proj))
 #' us <- usa_composite(proj="aeqd")
 #' counties <- counties_composite("aeqd")
 us_aeqd_proj <- "+proj=aeqd +lat_0=40.08355112574181 +lon_0=-95.44921875"

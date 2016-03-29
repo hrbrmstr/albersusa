@@ -1,9 +1,5 @@
 ---
-output:
-  html_document:
-    keep_md: true
-  md_document:
-    variant: markdown_github
+output: rmarkdown::github_document
 ---
 
 `albersusa` : Tools, Shapefiles & Data to Work with an 'AlbersUSA' Composite Projection
@@ -20,8 +16,11 @@ The following functions are implemented:
 
 The following data sets are included:
 
-- `system.file("extdata/composite_us_states.geojson", package="albersusa")` - composite GeoJSON
-- `system.file("extdata/composite_us_counties.geojson", package="albersusa")` - composite GeoJSON
+- `system.file("extdata/composite_us_states.geojson.gz", package="albersusa")` 
+- `system.file("extdata/composite_us_counties.geojson.gz", package="albersusa")`
+
+Also, the `@data` slot of each `SpatialPolygonsDataFrame` has some handy data you can 
+use (like FIPS codes and state/county population information).
 
 ### Installation
 

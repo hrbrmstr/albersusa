@@ -22,12 +22,20 @@
 #' $ pop_2014            (int) 6731484, 2966369, 38802500, 5355866, 3596677, 6588...
 #' }
 #'
+#' A reference GeoJSON file is provided in the following location (i.e. you can use
+#' it in any mapping program):
+#'
+#' \preformatted{
+#' system.file("extdata/composite_us_states.geojson.gz", package="albersusa")
+#' }
+#'
 #' @param proj if anything but \code{longlat} is specified, the shapefile will
 #'        be pre-projected before being returned
 #' @export
 #' @examples
-#' plot(usa_composite())
+#' library(sp)
 #'
+#' plot(usa_composite())
 #' plot(usa_composite("laea"))
 usa_composite <- function(proj=c("longlat", "laea", "lcc", "eqdc", "aeqd")) {
 

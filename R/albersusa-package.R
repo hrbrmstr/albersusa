@@ -1,5 +1,19 @@
 #' Tools, Shapefiles & Data to Work with an 'AlbersUSA' Composite Projection
 #'
+#' Creating a composite projection for states and counties of the United States
+#' that includes scaled and shifted polygons for Alaska and Hawaii is time consuming
+#' and potentially error-prone. Functions and data sets are provided to make it easier to
+#' produce maps with a composite projection. Furthermore, named projections for common
+#' transormations are provided to further increase mapping productivity.
+#'
+#' Reference GeoJSON files are provided in the following locations (i.e. you can use
+#' them in any mapping program):
+#'
+#' \preformatted{
+#' system.file("extdata/composite_us_states.geojson.gz", package="albersusa")
+#' system.file("extdata/composite_us_counties.geojson.gz", package="albersusa")
+#' }
+#'
 #' @name albersusa
 #' @docType package
 #' @author Bob Rudis (@@hrbrmstr)
