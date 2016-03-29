@@ -16,10 +16,12 @@ The following functions are implemented:
 - `us_laea_proj`:	Albers equal-area conic convenience projection
 - `us_lcc_proj`:	Lambert conformal conic convenience projection
 - `us_longlat_proj`:	Generic long/lat convenience projection
+- `counties_composite`:	Retreive a U.S. county composite map, optionally with a projection
 
 The following data sets are included:
 
 - `system.file("extdata/composite_us_states.geojson", package="albersusa")` - composite GeoJSON
+- `system.file("extdata/composite_us_counties.geojson", package="albersusa")` - composite GeoJSON
 
 ### Installation
 
@@ -87,6 +89,38 @@ gg +
   scale_fill_viridis(name="2014 Populaton Estimates", labels=comma) +
   theme(legend.position="right")
 
+
+us <- counties_composite()
+
+dplyr::glimpse(us@data)
+
+plot(us)
+
+us <- counties_composite("laea")
+plot(us)
+
+us <- counties_composite()
+us_map <- fortify(us, region="fips")
+
+gg <- ggplot()
+gg <- gg + geom_map(data=us_map, map=us_map,
+                    aes(x=long, y=lat, map_id=id),
+                    color="#2b2b2b", size=0.1, fill=NA)
+gg <- gg + theme_map()
+
+gg + coord_map()
+
+gg + coord_map("polyconic")
+
+gg + coord_proj()
+
+gg + coord_proj(us_laea_proj)
+
+gg + coord_proj(us_aeqd_proj)
+
+gg + coord_proj(us_eqdc_proj)
+
+gg + coord_proj(us_lcc_proj)
 ```
 
 ### Test Results

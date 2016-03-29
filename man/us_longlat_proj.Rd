@@ -18,6 +18,7 @@ parameter to \code{ggalt::coord_proj()}. i.e. \code{coord_proj(us_longlat_proj)}
 \examples{
 us <- usa_composite() # it's the default
 us <- sp::spTransform(us, CRS(us_longlat_proj))
+counties <- counties_composite()
 }
 \keyword{datasets}
 

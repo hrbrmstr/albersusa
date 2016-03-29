@@ -9,10 +9,12 @@ The following functions are implemented:
 - `us_laea_proj`:	Albers equal-area conic convenience projection
 - `us_lcc_proj`:	Lambert conformal conic convenience projection
 - `us_longlat_proj`:	Generic long/lat convenience projection
+- `counties_composite`:	Retreive a U.S. county composite map, optionally with a projection
 
 The following data sets are included:
 
 - `system.file("extdata/composite_us_states.geojson", package="albersusa")` - composite GeoJSON
+- `system.file("extdata/composite_us_counties.geojson", package="albersusa")` - composite GeoJSON
 
 ### Installation
 
@@ -143,6 +145,89 @@ gg +
 
 <img src="README_files/figure-html/unnamed-chunk-3-10.png" title="" alt="" width="672" />
 
+```r
+us <- counties_composite()
+
+dplyr::glimpse(us@data)
+```
+
+```
+## Observations: 3,143
+## Variables: 8
+## $ fips        (chr) "01001", "01009", "01017", "01021", "01033", "01045", "01051", "01065", "01079", "01083", "0109...
+## $ state_fips  (chr) "01", "01", "01", "01", "01", "01", "01", "01", "01", "01", "01", "01", "01", "05", "05", "06",...
+## $ county_fips (chr) "001", "009", "017", "021", "033", "045", "051", "065", "079", "083", "099", "107", "121", "141...
+## $ name        (chr) "Autauga", "Blount", "Chambers", "Chilton", "Colbert", "Dale", "Elmore", "Hale", "Lawrence", "L...
+## $ lsad        (chr) "County", "County", "County", "County", "County", "County", "County", "County", "County", "Coun...
+## $ census_area (dbl) 594.436, 644.776, 596.531, 692.854, 592.619, 561.150, 618.485, 643.943, 690.678, 559.936, 1025....
+## $ state       (chr) "Alabama", "Alabama", "Alabama", "Alabama", "Alabama", "Alabama", "Alabama", "Alabama", "Alabam...
+## $ iso_3166_2  (chr) "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AR", "AR", "CA",...
+```
+
+```r
+plot(us)
+```
+
+<img src="README_files/figure-html/unnamed-chunk-3-11.png" title="" alt="" width="672" />
+
+```r
+us <- counties_composite("laea")
+plot(us)
+```
+
+<img src="README_files/figure-html/unnamed-chunk-3-12.png" title="" alt="" width="672" />
+
+```r
+us <- counties_composite()
+us_map <- fortify(us, region="fips")
+
+gg <- ggplot()
+gg <- gg + geom_map(data=us_map, map=us_map,
+                    aes(x=long, y=lat, map_id=id),
+                    color="#2b2b2b", size=0.1, fill=NA)
+gg <- gg + theme_map()
+
+gg + coord_map()
+```
+
+<img src="README_files/figure-html/unnamed-chunk-3-13.png" title="" alt="" width="672" />
+
+```r
+gg + coord_map("polyconic")
+```
+
+<img src="README_files/figure-html/unnamed-chunk-3-14.png" title="" alt="" width="672" />
+
+```r
+gg + coord_proj()
+```
+
+<img src="README_files/figure-html/unnamed-chunk-3-15.png" title="" alt="" width="672" />
+
+```r
+gg + coord_proj(us_laea_proj)
+```
+
+<img src="README_files/figure-html/unnamed-chunk-3-16.png" title="" alt="" width="672" />
+
+```r
+gg + coord_proj(us_aeqd_proj)
+```
+
+<img src="README_files/figure-html/unnamed-chunk-3-17.png" title="" alt="" width="672" />
+
+```r
+gg + coord_proj(us_eqdc_proj)
+```
+
+<img src="README_files/figure-html/unnamed-chunk-3-18.png" title="" alt="" width="672" />
+
+```r
+gg + coord_proj(us_lcc_proj)
+```
+
+<img src="README_files/figure-html/unnamed-chunk-3-19.png" title="" alt="" width="672" />
+
 ### Test Results
 
 
@@ -154,7 +239,7 @@ date()
 ```
 
 ```
-## [1] "Mon Mar 28 22:38:24 2016"
+## [1] "Mon Mar 28 23:32:07 2016"
 ```
 
 ```r

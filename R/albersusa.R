@@ -1,4 +1,4 @@
-#' Retreive a U.S. composite map, optionally with a projection
+#' Retreive a U.S. state composite map, optionally with a projection
 #'
 #' The \code{proj} parameter is intende to simplify usage for those using base
 #' plotting. If anything but \code{longlat} is specified the composite map

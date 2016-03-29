@@ -19,6 +19,7 @@ parameter to \code{ggalt::coord_proj()}. i.e. \code{coord_proj(us_lcc_proj)}.
 us <- usa_composite()
 us <- sp::spTransform(us, CRS(us_lcc_proj))
 us <- usa_composite(proj="lcc")
+counties <- counties_composite("lcc")
 }
 \seealso{
 Other convenience.projections: \code{\link{us_aeqd_proj}},

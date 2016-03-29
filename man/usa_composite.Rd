@@ -2,7 +2,7 @@
 % Please edit documentation in R/albersusa.R
 \name{usa_composite}
 \alias{usa_composite}
-\title{Retreive a U.S. composite map, optionally with a projection}
+\title{Retreive a U.S. state composite map, optionally with a projection}
 \usage{
 usa_composite(proj = c("longlat", "laea", "lcc", "eqdc", "aeqd"))
 }
@@ -16,7 +16,7 @@ plotting. If anything but \code{longlat} is specified the composite map
 will be pre-projected to those
 }
 \details{
-This is what's in the SPDF \code{@data} portion:
+This is what's in the SPDF \code{@data} slot:
 
 \preformatted{
 Observations: 51
@@ -24,8 +24,6 @@ Variables: 13
 $ geo_id              (chr) "0400000US04", "0400000US05", "0400000US06", "0400...
 $ fips_state          (chr) "04", "05", "06", "08", "09", "11", "13", "17", "1...
 $ name                (chr) "Arizona", "Arkansas", "California", "Colorado", "...
-$ lsad                (chr) "", "", "", "", "", "", "", "", "", "", "", "", ""...
-$ census_area         (dbl) 113594.084, 52035.477, 155779.220, 103641.888, 484...
 $ iso_3166_2          (chr) "AZ", "AR", "CA", "CO", "CT", "DC", "GA", "IL", "I...
 $ census              (int) 6392017, 2915918, 37253956, 5029196, 3574097, 6017...
 $ pop_estimataes_base (int) 6392310, 2915958, 37254503, 5029324, 3574096, 6017...
