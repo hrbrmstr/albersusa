@@ -1,4 +1,6 @@
 
+[![Build Status](https://travis-ci.org/hrbrmstr/albersusa.svg?branch=master)](https://travis-ci.org/hrbrmstr/albersusa)
+
 `albersusa` : Tools, Shapefiles & Data to Work with an 'AlbersUSA' Composite Projection
 
 The following functions are implemented:
@@ -230,7 +232,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Tue Mar 29 13:22:01 2016"
+    ## [1] "Tue Mar 29 15:08:54 2016"
 
 ``` r
 test_dir("tests/")
