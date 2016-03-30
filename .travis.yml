@@ -6,6 +6,9 @@ apt_packages:
  - binutils
  - libproj-dev
  - gdal-bin
+ - libgdal1-dev
+ - netcdf-bin
+ - libproj-dev
 
 env:
  global:
