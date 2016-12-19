@@ -53,10 +53,10 @@ us <- usa_composite()
 
 dplyr::glimpse(us@data)
 
-plot(us)
+plot(us, lwd=0.25)
 
 us <- usa_composite("laea")
-plot(us)
+plot(us, lwd=0.25)
 
 us <- usa_composite()
 us_map <- fortify(us, region="name")
@@ -87,17 +87,18 @@ gg +
            color="white", size=0.1) +
   coord_proj(us_laea_proj) +
   scale_fill_viridis(name="2014 Populaton Estimates", labels=comma) +
-  theme(legend.position="right")
+  theme(legend.position="top", 
+        legend.key.width=unit(3, "lines"))
 
 
 us <- counties_composite()
 
 dplyr::glimpse(us@data)
 
-plot(us)
+plot(us, lwd=0.25)
 
 us <- counties_composite("laea")
-plot(us)
+plot(us, lwd=0.25)
 
 us <- counties_composite()
 us_map <- fortify(us, region="fips")

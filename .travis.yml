@@ -4,7 +4,6 @@ sudo: required
 
 apt_packages:
  - binutils
- - libproj-dev
  - gdal-bin
  - libgdal1-dev
  - netcdf-bin
