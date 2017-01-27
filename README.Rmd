@@ -7,6 +7,9 @@ output: rmarkdown::github_document
 
 The following functions are implemented:
 
+- `counties_sf`:	Retreive a U.S. county composite map, optionally with a projection, as a simplefeature
+- `usa_sf`:	Retreive a U.S. state composite map, optionally with a projection, as a simplefeature
+
 - `usa_composite`:	Retreive a U.S. composite map, optionally with a projection
 - `us_aeqd_proj`:	Oblique azimuthal equidistant convenience projection
 - `us_eqdc_proj`:	Equidistant conic convenience projection
@@ -37,6 +40,7 @@ options(width=120)
 
 ```{r message=FALSE, fig.retina=2}
 library(albersusa)
+library(sf)
 library(sp)
 library(rgeos)
 library(maptools)
@@ -48,7 +52,23 @@ library(scales)
 
 # current verison
 packageVersion("albersusa")
+```
 
+### Simple features
+
+```{r message=FALSE, fig.retina=2}
+par(mar=c(0,0,1,0))
+
+us_sf <- usa_sf("laea")
+plot(us_sf["pop_2012"])
+
+cty_sf <- counties_sf("aeqd")
+plot(cty_sf["census_area"])
+```
+
+### Legacy
+
+```{r message=FALSE, warning=FALSE, fig.retina=2}
 us <- usa_composite()
 
 dplyr::glimpse(us@data)
@@ -134,4 +154,3 @@ date()
 
 test_dir("tests/")
 ```
-

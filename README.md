@@ -5,6 +5,9 @@
 
 The following functions are implemented:
 
+-   `counties_sf`: Retreive a U.S. county composite map, optionally with a projection, as a simplefeature
+-   `usa_sf`: Retreive a U.S. state composite map, optionally with a projection, as a simplefeature
+
 -   `usa_composite`: Retreive a U.S. composite map, optionally with a projection
 -   `us_aeqd_proj`: Oblique azimuthal equidistant convenience projection
 -   `us_eqdc_proj`: Equidistant conic convenience projection
@@ -30,6 +33,7 @@ devtools::install_github("hrbrmstr/albersusa")
 
 ``` r
 library(albersusa)
+library(sf)
 library(sp)
 library(rgeos)
 library(maptools)
@@ -43,7 +47,27 @@ library(scales)
 packageVersion("albersusa")
 ```
 
-    ## [1] '0.2.0'
+    ## [1] '0.3.0'
+
+### Simple features
+
+``` r
+par(mar=c(0,0,1,0))
+
+us_sf <- usa_sf("laea")
+plot(us_sf["pop_2012"])
+```
+
+<img src="README_files/figure-markdown_github/unnamed-chunk-4-1.png" width="672" />
+
+``` r
+cty_sf <- counties_sf("aeqd")
+plot(cty_sf["census_area"])
+```
+
+<img src="README_files/figure-markdown_github/unnamed-chunk-4-2.png" width="672" />
+
+### Legacy
 
 ``` r
 us <- usa_composite()
@@ -71,14 +95,14 @@ dplyr::glimpse(us@data)
 plot(us, lwd=0.25)
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-1.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-1.png" width="672" />
 
 ``` r
 us <- usa_composite("laea")
 plot(us, lwd=0.25)
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-2.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-2.png" width="672" />
 
 ``` r
 us <- usa_composite()
@@ -88,57 +112,48 @@ gg <- ggplot()
 gg <- gg + geom_map(data=us_map, map=us_map,
                     aes(x=long, y=lat, map_id=id),
                     color="#2b2b2b", size=0.1, fill=NA)
-```
-
-    ## Warning: Ignoring unknown aesthetics: x, y
-
-``` r
 gg <- gg + theme_map()
-```
 
-    ## Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead
-
-``` r
 gg + coord_map()
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-3.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-3.png" width="672" />
 
 ``` r
 gg + coord_map("polyconic")
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-4.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-4.png" width="672" />
 
 ``` r
 gg + coord_proj()
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-5.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-5.png" width="672" />
 
 ``` r
 gg + coord_proj(us_laea_proj)
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-6.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-6.png" width="672" />
 
 ``` r
 gg + coord_proj(us_aeqd_proj)
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-7.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-7.png" width="672" />
 
 ``` r
 gg + coord_proj(us_eqdc_proj)
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-8.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-8.png" width="672" />
 
 ``` r
 gg + coord_proj(us_lcc_proj)
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-9.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-9.png" width="672" />
 
 ``` r
 gg + 
@@ -151,7 +166,7 @@ gg +
         legend.key.width=unit(3, "lines"))
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-10.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-10.png" width="672" />
 
 ``` r
 us <- counties_composite()
@@ -174,14 +189,14 @@ dplyr::glimpse(us@data)
 plot(us, lwd=0.25)
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-11.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-11.png" width="672" />
 
 ``` r
 us <- counties_composite("laea")
 plot(us, lwd=0.25)
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-12.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-12.png" width="672" />
 
 ``` r
 us <- counties_composite()
@@ -191,57 +206,48 @@ gg <- ggplot()
 gg <- gg + geom_map(data=us_map, map=us_map,
                     aes(x=long, y=lat, map_id=id),
                     color="#2b2b2b", size=0.1, fill=NA)
-```
-
-    ## Warning: Ignoring unknown aesthetics: x, y
-
-``` r
 gg <- gg + theme_map()
-```
 
-    ## Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead
-
-``` r
 gg + coord_map()
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-13.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-13.png" width="672" />
 
 ``` r
 gg + coord_map("polyconic")
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-14.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-14.png" width="672" />
 
 ``` r
 gg + coord_proj()
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-15.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-15.png" width="672" />
 
 ``` r
 gg + coord_proj(us_laea_proj)
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-16.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-16.png" width="672" />
 
 ``` r
 gg + coord_proj(us_aeqd_proj)
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-17.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-17.png" width="672" />
 
 ``` r
 gg + coord_proj(us_eqdc_proj)
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-18.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-18.png" width="672" />
 
 ``` r
 gg + coord_proj(us_lcc_proj)
 ```
 
-<img src="README_files/figure-markdown_github/unnamed-chunk-3-19.png" width="672" />
+<img src="README_files/figure-markdown_github/unnamed-chunk-5-19.png" width="672" />
 
 ### Test Results
 
@@ -252,7 +258,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Mon Dec 19 16:02:00 2016"
+    ## [1] "Thu Jan 26 23:37:19 2017"
 
 ``` r
 test_dir("tests/")
@@ -262,4 +268,3 @@ test_dir("tests/")
     ## OK: 6 SKIPPED: 0 FAILED: 0
     ## 
     ## DONE ===================================================================================================================
-    ## You rock!
