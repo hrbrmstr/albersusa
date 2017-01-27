@@ -8,20 +8,25 @@ The following functions are implemented:
 -   `counties_sf`: Retreive a U.S. county composite map, optionally with a projection, as a simplefeature
 -   `usa_sf`: Retreive a U.S. state composite map, optionally with a projection, as a simplefeature
 
+Some legacy ones:
+
 -   `usa_composite`: Retreive a U.S. composite map, optionally with a projection
+-   `counties_composite`: Retreive a U.S. county composite map, optionally with a projection
+
+Pre-canned projection strings:
+
 -   `us_aeqd_proj`: Oblique azimuthal equidistant convenience projection
 -   `us_eqdc_proj`: Equidistant conic convenience projection
 -   `us_laea_proj`: Albers equal-area conic convenience projection
 -   `us_lcc_proj`: Lambert conformal conic convenience projection
 -   `us_longlat_proj`: Generic long/lat convenience projection
--   `counties_composite`: Retreive a U.S. county composite map, optionally with a projection
 
 The following data sets are included:
 
 -   `system.file("extdata/composite_us_states.geojson.gz", package="albersusa")`
 -   `system.file("extdata/composite_us_counties.geojson.gz", package="albersusa")`
 
-Also, the `@data` slot of each `SpatialPolygonsDataFrame` has some handy data you can use (like FIPS codes and state/county population information).
+Also, the simplefeatures coluns and `@data` slot of each `SpatialPolygonsDataFrame` has some handy data you can use (like FIPS codes and state/county population information).
 
 ### Installation
 
@@ -258,7 +263,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Thu Jan 26 23:37:19 2017"
+    ## [1] "Thu Jan 26 23:49:15 2017"
 
 ``` r
 test_dir("tests/")
