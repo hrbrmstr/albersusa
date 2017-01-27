@@ -8,6 +8,10 @@ The following functions are implemented:
 -   `counties_sf`: Retreive a U.S. county composite map, optionally with a projection, as a simplefeature
 -   `usa_sf`: Retreive a U.S. state composite map, optionally with a projection, as a simplefeature
 
+New ones:
+
+-   `points_elided`: Shift points around Alaska and Hawaii to the elided area (by @rdinter)
+
 Some legacy ones:
 
 -   `usa_composite`: Retreive a U.S. composite map, optionally with a projection
@@ -263,7 +267,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Thu Jan 26 23:49:15 2017"
+    ## [1] "Thu Jan 26 23:57:29 2017"
 
 ``` r
 test_dir("tests/")

@@ -46,7 +46,7 @@ system.file("extdata/composite_us_states.geojson.gz", package="albersusa")
 \examples{
 library(sf)
 
-plot(usa_sf())
+plot(usa_sf()) # these take a while to render
 plot(usa_sf("laea"))
 }
 
