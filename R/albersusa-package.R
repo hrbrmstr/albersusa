@@ -6,6 +6,9 @@
 #' produce maps with a composite projection. Furthermore, named projections for common
 #' transormations are provided to further increase mapping productivity.
 #'
+#' Newer \code{sf} (simple features) objects can be returned or legacy R
+#' spatial \code{sp} objects can be returned.
+#'
 #' Reference GeoJSON files are provided in the following locations (i.e. you can use
 #' them in any mapping program):
 #'
@@ -16,6 +19,7 @@
 #'
 #' @name albersusa
 #' @docType package
-#' @author Bob Rudis (@@hrbrmstr)
+#' @author Bob Rudis (bob@@rud.is)
 #' @import sp rgeos rgdal maptools
+#' @import sf
 NULL

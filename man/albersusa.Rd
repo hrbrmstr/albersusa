@@ -13,6 +13,9 @@ produce maps with a composite projection. Furthermore, named projections for com
 transormations are provided to further increase mapping productivity.
 }
 \details{
+Newer \code{sf} (simple features) objects can be returned or legacy R
+spatial \code{sp} objects can be returned.
+
 Reference GeoJSON files are provided in the following locations (i.e. you can use
 them in any mapping program):
 
@@ -22,6 +25,6 @@ system.file("extdata/composite_us_counties.geojson.gz", package="albersusa")
 }
 }
 \author{
-Bob Rudis (@hrbrmstr)
+Bob Rudis (bob@rud.is)
 }
 

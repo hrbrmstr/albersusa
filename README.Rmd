@@ -7,21 +7,28 @@ output: rmarkdown::github_document
 
 The following functions are implemented:
 
+- `counties_sf`:	Retreive a U.S. county composite map, optionally with a projection, as a simplefeature
+- `usa_sf`:	Retreive a U.S. state composite map, optionally with a projection, as a simplefeature
+
+Some legacy ones:
+
 - `usa_composite`:	Retreive a U.S. composite map, optionally with a projection
+- `counties_composite`:	Retreive a U.S. county composite map, optionally with a projection
+
+Pre-canned projection strings:
+
 - `us_aeqd_proj`:	Oblique azimuthal equidistant convenience projection
 - `us_eqdc_proj`:	Equidistant conic convenience projection
 - `us_laea_proj`:	Albers equal-area conic convenience projection
 - `us_lcc_proj`:	Lambert conformal conic convenience projection
 - `us_longlat_proj`:	Generic long/lat convenience projection
-- `counties_composite`:	Retreive a U.S. county composite map, optionally with a projection
 
 The following data sets are included:
 
 - `system.file("extdata/composite_us_states.geojson.gz", package="albersusa")` 
 - `system.file("extdata/composite_us_counties.geojson.gz", package="albersusa")`
 
-Also, the `@data` slot of each `SpatialPolygonsDataFrame` has some handy data you can 
-use (like FIPS codes and state/county population information).
+Also, the simplefeatures coluns and `@data` slot of each `SpatialPolygonsDataFrame` has some handy data you can use (like FIPS codes and state/county population information).
 
 ### Installation
 
@@ -37,6 +44,7 @@ options(width=120)
 
 ```{r message=FALSE, fig.retina=2}
 library(albersusa)
+library(sf)
 library(sp)
 library(rgeos)
 library(maptools)
@@ -48,7 +56,23 @@ library(scales)
 
 # current verison
 packageVersion("albersusa")
+```
 
+### Simple features
+
+```{r message=FALSE, fig.retina=2}
+par(mar=c(0,0,1,0))
+
+us_sf <- usa_sf("laea")
+plot(us_sf["pop_2012"])
+
+cty_sf <- counties_sf("aeqd")
+plot(cty_sf["census_area"])
+```
+
+### Legacy
+
+```{r message=FALSE, warning=FALSE, fig.retina=2}
 us <- usa_composite()
 
 dplyr::glimpse(us@data)
@@ -134,4 +158,3 @@ date()
 
 test_dir("tests/")
 ```
-
