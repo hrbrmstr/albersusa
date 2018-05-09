@@ -21,4 +21,3 @@ us <- sp::spTransform(us, sp::CRS(us_longlat_proj))
 counties <- counties_composite()
 }
 \keyword{datasets}
-

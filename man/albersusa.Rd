@@ -27,4 +27,3 @@ system.file("extdata/composite_us_counties.geojson.gz", package="albersusa")
 \author{
 Bob Rudis (bob@rud.is)
 }
-

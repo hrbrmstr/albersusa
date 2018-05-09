@@ -1,9 +1,17 @@
 ---
 output: rmarkdown::github_document
+editor_options: 
+  chunk_output_type: console
 ---
 [![Build Status](https://travis-ci.org/hrbrmstr/albersusa.svg?branch=master)](https://travis-ci.org/hrbrmstr/albersusa)
 
-`albersusa` : Tools, Shapefiles & Data to Work with an 'AlbersUSA' Composite Projection
+# albersusa
+
+Tools, Shapefiles & Data to Work with an 'AlbersUSA' Composite Projection
+
+## Description
+
+## What's Inside The Tin
 
 The following functions are implemented:
 
@@ -34,7 +42,7 @@ The following data sets are included:
 
 Also, the simplefeatures coluns and `@data` slot of each `SpatialPolygonsDataFrame` has some handy data you can use (like FIPS codes and state/county population information).
 
-### Installation
+## Installation
 
 ```{r eval=FALSE}
 devtools::install_github("hrbrmstr/albersusa")
@@ -44,7 +52,7 @@ devtools::install_github("hrbrmstr/albersusa")
 options(width=120)
 ```
 
-### Usage
+## Usage
 
 ```{r message=FALSE, fig.retina=2}
 library(albersusa)
@@ -152,13 +160,12 @@ gg + coord_proj(us_eqdc_proj)
 gg + coord_proj(us_lcc_proj)
 ```
 
-### Test Results
+### Session Info
 
 ```{r}
-library(albersusa)
-library(testthat)
-
-date()
-
-test_dir("tests/")
+devtools::session_info()
 ```
+
+## Code of Conduct
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.

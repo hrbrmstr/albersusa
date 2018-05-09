@@ -1,8 +1,8 @@
 Package: albersusa
 Type: Package
 Title: Tools, Shapefiles & Data to Work with an 'AlbersUSA' Composite Projection
-Version: 0.3.0
-Date: 2017-01-26
+Version: 0.3.1
+Date: 2018-05-09
 Author: Bob Rudis (bob@rud.is)
 Maintainer: Bob Rudis <bob@rud.is>
 Description: Creating a composite projection for states and counties of the United States
@@ -10,7 +10,7 @@ Description: Creating a composite projection for states and counties of the Unit
     and potentially error-prone. Functions and data sets are provided to make it easier to
     produce maps with a composite projection. Furthermore, named projections for common
     transormations are provided to further increase mapping productivity.
-URL: http://github.com/hrbrmstr/albersusa
+URL: https://github.com/hrbrmstr/albersusa
 BugReports: https://github.com/hrbrmstr/albersusa/issues
 License: AGPL
 Suggests:
@@ -25,4 +25,5 @@ Imports:
     rgeos,
     rgdal,
     maptools
-RoxygenNote: 5.0.1
+Encoding: UTF-8
+RoxygenNote: 6.0.1.9000

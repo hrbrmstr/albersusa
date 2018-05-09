@@ -44,4 +44,3 @@ library(sf)
 plot(counties_sf()) # these take a while to render
 plot(counties_sf("laea"))
 }
-

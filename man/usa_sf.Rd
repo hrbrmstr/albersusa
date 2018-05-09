@@ -49,4 +49,3 @@ library(sf)
 plot(usa_sf()) # these take a while to render
 plot(usa_sf("laea"))
 }
-

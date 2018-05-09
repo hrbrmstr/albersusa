@@ -45,4 +45,3 @@ library(sp)
 plot(counties_composite())
 plot(counties_composite("laea"))
 }
-

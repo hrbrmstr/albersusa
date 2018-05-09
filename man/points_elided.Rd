@@ -16,4 +16,3 @@ An elided version of the original SpatialPoints class
 This function will take a SpatialPoints object and shift the points around
  Alaska and Hawaii to the elided area from this package.
 }
-

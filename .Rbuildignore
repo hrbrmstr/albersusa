@@ -6,3 +6,4 @@
 ^NOTES\.*md$
 ^NOTES\.*html$
 ^README_files
+^CONDUCT\.md$
