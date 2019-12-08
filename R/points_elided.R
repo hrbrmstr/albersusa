@@ -20,6 +20,7 @@ points_elided <- function(sp) {
   }
 
   orig_proj <- sp::proj4string(sp)
+
   # convert it to Albers equal area
   sp <- sp::spTransform(sp, sp::CRS("+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs"))
 
@@ -31,15 +32,14 @@ points_elided <- function(sp) {
   #  from the original points
   ak_l <- sp::over(sp, ak_poly)
   ak <- sp[!is.na(ak_l),]
-
-  # sp <- sp[is.na(ak_l),]
+  sp <- sp[is.na(ak_l),]
 
   if (length(ak)) {
     # Elide the points, the key here is to set "bb" to what the original
     #  transformation's bounding box was!
     ak <- maptools::elide(
       ak,
-      scale=max(apply(ak_bb, 1, diff)) / 2.3,
+      scale = max(apply(ak_bb, 1, diff)) / 2.3,
       rotate = -50,
       bb = ak_bb
     ) # NEED the bb option here
@@ -48,7 +48,7 @@ points_elided <- function(sp) {
   }
 
   hi_bb <- readRDS(system.file("extdata/hawaii_bb.rda", package="albersusa"))
-  #hi_bb   <- readRDS("inst/extdata/hawaii_bb.rda")
+  # hi_bb   <- readRDS("inst/extdata/hawaii_bb.rda")
   # hi_bb <- matrix(c(-160.2471, 18.9117, -154.8066, 22.2356), 2, 2)
   # rownames(hi_bb) <- c("x", "y")
   # colnames(hi_bb) <- c("min", "max")
@@ -58,10 +58,13 @@ points_elided <- function(sp) {
   sp::proj4string(hi_poly) <- "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs"
 
   # Determine which points fall in the Alaska bounding box, subset and remove
-  #  from the original points
+  # from the original points
   hi_l <- sp::over(sp, hi_poly)
   hi <- sp[!is.na(hi_l),]
+# <<<<<<< HEAD
   sp <- sp[is.na(hi_l),]
+# =======
+# >>>>>>> 6dabfc9dcf6d3c2dcbdb743622d692e600e82443
 
   if (length(hi)) {
     hi <- maptools::elide(
@@ -75,7 +78,11 @@ points_elided <- function(sp) {
 
   # Bring them back together with original projection
   if (length(ak) && length(hi)) {
+# <<<<<<< HEAD
     sp <- rbind(sp, ak, hi)
+# =======
+#     sp <- rbind(ak, hi)
+# >>>>>>> 6dabfc9dcf6d3c2dcbdb743622d692e600e82443
   } else if (length(ak)) {
     sp <- ak
   } else if (length(hi)) {

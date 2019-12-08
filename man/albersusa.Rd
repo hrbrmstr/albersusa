@@ -3,7 +3,6 @@
 \docType{package}
 \name{albersusa}
 \alias{albersusa}
-\alias{albersusa-package}
 \title{Tools, Shapefiles & Data to Work with an 'AlbersUSA' Composite Projection}
 \description{
 Creating a composite projection for states and counties of the United States

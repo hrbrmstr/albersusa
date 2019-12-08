@@ -24,8 +24,10 @@ us <- usa_composite(proj="aeqd")
 counties <- counties_composite("aeqd")
 }
 \seealso{
-Other convenience projections: \code{\link{us_eqdc_proj}},
-  \code{\link{us_laea_proj}}, \code{\link{us_lcc_proj}}
+Other convenience projections: 
+\code{\link{us_eqdc_proj}},
+\code{\link{us_laea_proj}},
+\code{\link{us_lcc_proj}}
 }
 \concept{convenience projections}
 \keyword{datasets}
