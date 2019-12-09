@@ -12,8 +12,6 @@ points_elided <- function(sp) {
 
   ret <- "sp"
 
-  sp <- xx
-
   if (inherits(sp, "data.frame")) {
     class(sp) <- "data.frame"
     sp <- setNames(sp, c("lon", "lat"))

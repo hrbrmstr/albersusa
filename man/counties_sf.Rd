@@ -2,7 +2,7 @@
 % Please edit documentation in R/counties_sf.r
 \name{counties_sf}
 \alias{counties_sf}
-\title{Retreive a U.S. county composite map, optionally with a projection, as a simplefeature}
+\title{Retrieve a U.S. county composite map, optionally with a projection, as a simplefeature}
 \usage{
 counties_sf(proj = c("longlat", "laea", "lcc", "eqdc", "aeqd"))
 }

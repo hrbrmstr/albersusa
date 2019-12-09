@@ -2,7 +2,7 @@
 % Please edit documentation in R/albersusa.R
 \name{usa_composite}
 \alias{usa_composite}
-\title{Retreive a U.S. state composite map, optionally with a projection}
+\title{Retrieve a U.S. state composite map, optionally with a projection}
 \usage{
 usa_composite(proj = c("longlat", "laea", "lcc", "eqdc", "aeqd"))
 }

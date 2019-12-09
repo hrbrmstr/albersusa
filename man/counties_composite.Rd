@@ -2,7 +2,7 @@
 % Please edit documentation in R/counties.r
 \name{counties_composite}
 \alias{counties_composite}
-\title{Retreive a U.S. county composite map, optionally with a projection}
+\title{Retrieve a U.S. county composite map, optionally with a projection}
 \usage{
 counties_composite(proj = c("longlat", "laea", "lcc", "eqdc", "aeqd"))
 }
