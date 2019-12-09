@@ -7,7 +7,7 @@
 points_elided(sp)
 }
 \arguments{
-\item{sp}{An object of SpatialPoints class or a data frame with x (lon) and y (lat)}
+\item{sp}{An object of SpatialPoints class or a data frame with x (`lon`) and y (`lat`)}
 }
 \value{
 An elided version of the original SpatialPoints class or a data frame
@@ -15,5 +15,6 @@ An elided version of the original SpatialPoints class or a data frame
 }
 \description{
 This function will take a SpatialPoints object or a data frame of coordinates
-and shift the points around Alaska and Hawaii to the elided area from this package.
+and shift the points around Alaska and Hawaii to the elided area from this package,
+leaving the other points intact.
 }

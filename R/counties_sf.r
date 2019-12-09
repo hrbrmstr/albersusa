@@ -1,4 +1,4 @@
-#' Retreive a U.S. county composite map, optionally with a projection, as a simplefeature
+#' Retrieve a U.S. county composite map, optionally with a projection, as a simplefeature
 #'
 #' The \code{proj} parameter is intende to simplify usage for those using base
 #' plotting. If anything but \code{longlat} is specified the composite map

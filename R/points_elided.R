@@ -1,15 +1,18 @@
 #' Shift points around Alaska and Hawaii to the elided area
 #'
 #' This function will take a SpatialPoints object or a data frame of coordinates
-#' and shift the points around Alaska and Hawaii to the elided area from this package.
+#' and shift the points around Alaska and Hawaii to the elided area from this package,
+#' leaving the other points intact.
 #'
-#' @param sp An object of SpatialPoints class or a data frame with x (lon) and y (lat)
+#' @param sp An object of SpatialPoints class or a data frame with x (`lon`) and y (`lat`)
 #' @return An elided version of the original SpatialPoints class or a data frame
 #'         depending on what was passed in.
 #' @export
 points_elided <- function(sp) {
 
   ret <- "sp"
+
+  sp <- xx
 
   if (inherits(sp, "data.frame")) {
     class(sp) <- "data.frame"
@@ -28,68 +31,31 @@ points_elided <- function(sp) {
   ak_poly <- as(raster::extent(as.vector(t(ak_bb))), "SpatialPolygons")
   sp::proj4string(ak_poly) <- "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs"
 
-  # Determine which points fall in the Alaska bounding box, subset and remove
-  #  from the original points
-  ak_l <- sp::over(sp, ak_poly)
-  ak <- sp[!is.na(ak_l),]
-  sp <- sp[is.na(ak_l),]
-
-  if (length(ak)) {
-    # Elide the points, the key here is to set "bb" to what the original
-    #  transformation's bounding box was!
-    ak <- maptools::elide(
-      ak,
-      scale = max(apply(ak_bb, 1, diff)) / 2.3,
-      rotate = -50,
-      bb = ak_bb
-    ) # NEED the bb option here
-    ak <- maptools::elide(ak, shift = c(-1298669, -3018809)) # bb doesn't matter
-    sp::proj4string(ak) <- sp::proj4string(sp)
-  }
-
   hi_bb <- readRDS(system.file("extdata/hawaii_bb.rda", package="albersusa"))
-  # hi_bb   <- readRDS("inst/extdata/hawaii_bb.rda")
-  # hi_bb <- matrix(c(-160.2471, 18.9117, -154.8066, 22.2356), 2, 2)
-  # rownames(hi_bb) <- c("x", "y")
-  # colnames(hi_bb) <- c("min", "max")
   hi_poly <- as(raster::extent(as.vector(t(hi_bb))), "SpatialPolygons")
-  # sp::proj4string(hi_poly) <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
-  # hi_poly <- sp::spTransform(hi_poly, CRSobj = "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs")
   sp::proj4string(hi_poly) <- "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs"
 
-  # Determine which points fall in the Alaska bounding box, subset and remove
-  # from the original points
-  hi_l <- sp::over(sp, hi_poly)
-  hi <- sp[!is.na(hi_l),]
-# <<<<<<< HEAD
-  sp <- sp[is.na(hi_l),]
-# =======
-# >>>>>>> 6dabfc9dcf6d3c2dcbdb743622d692e600e82443
+  spl <- vector("list", length(sp))
 
-  if (length(hi)) {
-    hi <- maptools::elide(
-      hi,
-      rotate = -35,
-      bb = hi_bb
-    ) # NEED the bb option here
-    hi <- maptools::elide(hi, shift = c(5400000, -1400000)) # bb doesn't matter
-    sp::proj4string(hi) <- sp::proj4string(sp)
+  for (idx in seq_along(sp)) {
+
+    tmp <- sp[idx]
+
+    if (!is.na(sp::over(tmp, ak_poly))) {
+      tmp <- maptools::elide(tmp, rotate = -35, bb = hi_bb)
+      tmp <- maptools::elide(tmp, shift = c(-1298669, -3018809))
+    } else if (!is.na(sp::over(tmp, hi_poly))) {
+      tmp <- maptools::elide(tmp, scale = max(apply(hi_bb, 1, diff)) / 2.3, rotate = -50, bb = hi_bb)
+      tmp <- maptools::elide(tmp, shift = c(5400000, -1400000))
+    }
+
+    spl[[idx]] <- sp::coordinates(tmp)
+
   }
 
-  # Bring them back together with original projection
-  if (length(ak) && length(hi)) {
-# <<<<<<< HEAD
-    sp <- rbind(sp, ak, hi)
-# =======
-#     sp <- rbind(ak, hi)
-# >>>>>>> 6dabfc9dcf6d3c2dcbdb743622d692e600e82443
-  } else if (length(ak)) {
-    sp <- ak
-  } else if (length(hi)) {
-    sp <- hi
-  }
-
-  sp <- sp::spTransform(sp, CRS(orig_proj))
+  sp <- do.call(rbind, spl)
+  rownames(sp) <- 1:nrow(sp)
+  sp <- sp::SpatialPoints(sp, proj4string = sp::CRS(orig_proj))
 
   return(if (ret == "sp") sp else as.data.frame(sp))
 

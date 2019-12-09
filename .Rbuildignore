@@ -7,3 +7,4 @@
 ^NOTES\.*html$
 ^README_files
 ^CONDUCT\.md$
+^LICENSE\.md$

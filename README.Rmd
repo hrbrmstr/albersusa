@@ -1,21 +1,22 @@
 ---
 output: rmarkdown::github_document
-editor_options: 
-  chunk_output_type: console
 ---
-[![Build Status](https://travis-ci.org/hrbrmstr/albersusa.svg?branch=master)](https://travis-ci.org/hrbrmstr/albersusa)
+```{r pkg-knitr-opts, include=FALSE}
+hrbrpkghelpr::global_opts()
+```
 
-# albersusa
+```{r badges, results='asis', echo=FALSE, cache=FALSE}
+hrbrpkghelpr::stinking_badges()
+```
 
-Tools, Shapefiles & Data to Work with an 'AlbersUSA' Composite Projection
-
-## Description
-
+```{r description, results='asis', echo=FALSE, cache=FALSE}
+hrbrpkghelpr::yank_title_and_description()
+```
 ## What's Inside The Tin
 
 The following functions are implemented:
 
-- `counties_sf`:	Retreive a U.S. county composite map, optionally with a projection, as a simplefeature
+- `counties_sf`:	Retrieve a U.S. county composite map, optionally with a projection, as a simplefeature
 - `usa_sf`:	Retreive a U.S. state composite map, optionally with a projection, as a simplefeature
 
 New ones:
@@ -24,8 +25,8 @@ New ones:
 
 Some legacy ones:
 
-- `usa_composite`:	Retreive a U.S. composite map, optionally with a projection
-- `counties_composite`:	Retreive a U.S. county composite map, optionally with a projection
+- `usa_composite`:	Retrieve a U.S. composite map, optionally with a projection
+- `counties_composite`:	Retrieve a U.S. county composite map, optionally with a projection
 
 Pre-canned projection strings:
 
@@ -40,16 +41,12 @@ The following data sets are included:
 - `system.file("extdata/composite_us_states.geojson.gz", package="albersusa")` 
 - `system.file("extdata/composite_us_counties.geojson.gz", package="albersusa")`
 
-Also, the simplefeatures coluns and `@data` slot of each `SpatialPolygonsDataFrame` has some handy data you can use (like FIPS codes and state/county population information).
+Also, the simplefeatures columns and `@data` slot of each `SpatialPolygonsDataFrame` has some handy data you can use (like FIPS codes and state/county population information).
 
 ## Installation
 
-```{r eval=FALSE}
-devtools::install_github("hrbrmstr/albersusa")
-```
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
-options(width=120)
+```{r install-ex, results='asis', echo=FALSE, cache=FALSE}
+hrbrpkghelpr::install_block()
 ```
 
 ## Usage
@@ -66,11 +63,11 @@ library(ggthemes)
 library(viridis)
 library(scales)
 
-# current verison
+# current version
 packageVersion("albersusa")
 ```
 
-### Simple features
+### Simple features base
 
 ```{r message=FALSE, fig.retina=2}
 par(mar=c(0,0,1,0))
@@ -82,90 +79,30 @@ cty_sf <- counties_sf("aeqd")
 plot(cty_sf["census_area"])
 ```
 
-### Legacy
+### ggplot2
 
 ```{r message=FALSE, warning=FALSE, fig.retina=2}
-us <- usa_composite()
+ggplot() +
+  geom_sf(data = us_sf, size = 0.125)
 
-dplyr::glimpse(us@data)
+ggplot() +
+  geom_sf(data = us_sf, size = 0.125) +
+  coord_sf(crs = us_longlat_proj)
 
-plot(us, lwd=0.25)
+ggplot() +
+  geom_sf(data = cty_sf, size = 0.0725)
 
-us <- usa_composite("laea")
-plot(us, lwd=0.25)
-
-us <- usa_composite()
-us_map <- fortify(us, region="name")
-
-gg <- ggplot()
-gg <- gg + geom_map(data=us_map, map=us_map,
-                    aes(x=long, y=lat, map_id=id),
-                    color="#2b2b2b", size=0.1, fill=NA)
-gg <- gg + theme_map()
-
-gg + coord_map()
-
-gg + coord_map("polyconic")
-
-gg + coord_proj()
-
-gg + coord_proj(us_laea_proj)
-
-gg + coord_proj(us_aeqd_proj)
-
-gg + coord_proj(us_eqdc_proj)
-
-gg + coord_proj(us_lcc_proj)
-
-gg + 
-  geom_map(data=us@data, map=us_map,
-           aes(fill=pop_2014, map_id=name),
-           color="white", size=0.1) +
-  coord_proj(us_laea_proj) +
-  scale_fill_viridis(name="2014 Populaton Estimates", labels=comma) +
-  theme(legend.position="top", 
-        legend.key.width=unit(3, "lines"))
-
-
-us <- counties_composite()
-
-dplyr::glimpse(us@data)
-
-plot(us, lwd=0.25)
-
-us <- counties_composite("laea")
-plot(us, lwd=0.25)
-
-us <- counties_composite()
-us_map <- fortify(us, region="fips")
-
-gg <- ggplot()
-gg <- gg + geom_map(data=us_map, map=us_map,
-                    aes(x=long, y=lat, map_id=id),
-                    color="#2b2b2b", size=0.1, fill=NA)
-gg <- gg + theme_map()
-
-gg + coord_map()
-
-gg + coord_map("polyconic")
-
-gg + coord_proj()
-
-gg + coord_proj(us_laea_proj)
-
-gg + coord_proj(us_aeqd_proj)
-
-gg + coord_proj(us_eqdc_proj)
-
-gg + coord_proj(us_lcc_proj)
+ggplot() +
+  geom_sf(data = cty_sf, size = 0.0725) +
+  coord_sf(crs = us_longlat_proj)
 ```
 
-### Session Info
+## albersusa Metrics
 
-```{r}
-devtools::session_info()
+```{r cloc, echo=FALSE}
+cloc::cloc_pkg_md()
 ```
 
 ## Code of Conduct
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
