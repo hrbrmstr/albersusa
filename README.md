@@ -5,7 +5,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![Signed
 by](https://img.shields.io/badge/Keybase-Verified-brightgreen.svg)](https://keybase.io/hrbrmstr)
 ![Signed commit
-%](https://img.shields.io/badge/Signed_Commits-19%25-lightgrey.svg)
+%](https://img.shields.io/badge/Signed_Commits-100%25-lightgrey.svg)
 [![Linux build
 Status](https://travis-ci.org/hrbrmstr/albersusa.svg?branch=master)](https://travis-ci.org/hrbrmstr/albersusa)
 [![Coverage
@@ -26,8 +26,9 @@ States that includes scaled and shifted polygons for Alaska and Hawaii
 is time consuming and potentially error-prone. Functions and data sets
 are provided to make it easier to produce maps with a composite
 projection. Furthermore, named projections for common transormations are
-provided to further increase mapping productivity. \#\# What’s Inside
-The Tin
+provided to further increase mapping productivity.
+
+## What’s Inside The Tin
 
 The following functions are implemented:
 
@@ -161,8 +162,8 @@ ggplot() +
 
 | Lang | \# Files | (%) | LoC |  (%) | Blank lines |  (%) | \# Lines |  (%) |
 | :--- | -------: | --: | --: | ---: | ----------: | ---: | -------: | ---: |
-| R    |        9 | 0.9 | 106 | 0.77 |          66 | 0.68 |      277 | 0.86 |
-| Rmd  |        1 | 0.1 |  31 | 0.23 |          31 | 0.32 |       46 | 0.14 |
+| R    |        9 | 0.9 | 106 | 0.77 |          66 | 0.67 |      277 | 0.86 |
+| Rmd  |        1 | 0.1 |  31 | 0.23 |          32 | 0.33 |       46 | 0.14 |
 
 ## Code of Conduct
 

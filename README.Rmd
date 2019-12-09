@@ -12,6 +12,7 @@ hrbrpkghelpr::stinking_badges()
 ```{r description, results='asis', echo=FALSE, cache=FALSE}
 hrbrpkghelpr::yank_title_and_description()
 ```
+
 ## What's Inside The Tin
 
 The following functions are implemented:
