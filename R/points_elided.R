@@ -40,10 +40,10 @@ points_elided <- function(sp) {
     tmp <- sp[idx]
 
     if (!is.na(sp::over(tmp, ak_poly))) {
-      tmp <- maptools::elide(tmp, rotate = -35, bb = hi_bb)
+      tmp <- maptools::elide(tmp, scale = max(apply(ak_bb, 1, diff)) / 2.3, rotate = -50, bb = ak_bb)
       tmp <- maptools::elide(tmp, shift = c(-1298669, -3018809))
     } else if (!is.na(sp::over(tmp, hi_poly))) {
-      tmp <- maptools::elide(tmp, scale = max(apply(hi_bb, 1, diff)) / 2.3, rotate = -50, bb = hi_bb)
+      tmp <- maptools::elide(tmp, rotate = -35, bb = hi_bb)
       tmp <- maptools::elide(tmp, shift = c(5400000, -1400000))
     }
 
