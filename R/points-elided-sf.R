@@ -9,8 +9,14 @@
 #' @export
 points_elided_sf <- function(sfin) {
 
-  sfin <- points
   orig_crs <- st_crs(sfin)
+  if (is.na((orig_crs))) {
+
+    message("No CRS set...using '+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0'...")
+    sfin <- st_set_crs(sfin, st_crs("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"))
+    orig_crs <- st_crs(sfin)
+
+  }
 
   # convert it to Albers equal area
   sfin <- st_transform(sfin, st_crs("+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs"))
