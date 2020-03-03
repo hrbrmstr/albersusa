@@ -3,6 +3,7 @@
 export(counties_composite)
 export(counties_sf)
 export(points_elided)
+export(points_elided_sf)
 export(us_aeqd_proj)
 export(us_eqdc_proj)
 export(us_laea_proj)
