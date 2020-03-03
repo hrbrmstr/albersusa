@@ -24,8 +24,14 @@ points_elided_sf <- function(sfin) {
   ak_poly <- readRDS(system.file("extdata/alaska-sf-poly.rds", package="albersusa"))
   ak_bb <- readRDS(system.file("extdata/alaska_bb.rda", package="albersusa"))
 
+  # saveRDS(hi_poly, "inst/extdata/hawaii-sf-poly.rds", version = 2)
+  # saveRDS(hi_bb, "inst/extdata/hawaii_bb.rda", version = 2)
+
   hi_poly <- readRDS(system.file("extdata/hawaii-sf-poly.rds", package="albersusa"))
   hi_bb <- readRDS(system.file("extdata/hawaii_bb.rda", package="albersusa"))
+
+  # saveRDS(hi_poly, "inst/extdata/hawaii-sf-poly.rds", version = 2)
+  # saveRDS(hi_bb, "inst/extdata/hawaii_bb.rda", version = 2)
 
   ak_idx <- which(lengths(st_intersects(sfin, ak_poly)) != 0)
   hi_idx <- which(lengths(st_intersects(sfin, hi_poly)) != 0)
