@@ -38,7 +38,14 @@ points_elided_sf <- function(sfin) {
 
   tmp_ak <- sfin[ak_idx,]
   tmp_hi <- sfin[hi_idx,]
-  tmp_in <- sfin[-c(ak_idx, hi_idx),]
+
+  rest <- c(ak_idx, hi_idx)
+
+  if (length(rest) == 0) {
+    tmp_in <- sfin
+  } else {
+    tmp_in <- sfin[-c(ak_idx, hi_idx),]
+  }
 
   if (nrow(tmp_ak)) {
     tmp_ak <- as(tmp_ak, "Spatial")
