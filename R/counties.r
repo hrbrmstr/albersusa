@@ -43,6 +43,7 @@ counties_composite <- function(proj=c("longlat", "laea", "lcc", "eqdc", "aeqd"))
   #               verbose=FALSE)
 
   cty <- readRDS(system.file("extdata/counties.rda", package="albersusa"))
+  # saveRDS(cty, "inst/extdata/counties.rda", version = 2)
 
   proj <- match.arg(proj, c("longlat", "laea", "lcc", "eqdc", "aeqd"))
 
